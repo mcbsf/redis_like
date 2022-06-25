@@ -2,11 +2,12 @@
 Repository made to simulate a simple redis operation. There are 2 base files:
 
 1) redis_like.py with a class called Redis inside, with limited functionalities.
-2) a file named main.py, to generate a user interface via console to manage this Redis class
+2) main.py, to generate a user interface via console to manage this Redis class
 
 
 ## How to execute locally
 `cd {path_to_proejct}`
+
 `python3 main.py`
 
 ### Commands formats

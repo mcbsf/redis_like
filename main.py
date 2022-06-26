@@ -3,8 +3,6 @@ import re
 
 r = Redis()
 
-# considering that wont have any '<' or '>' in paramter value, just as param delimiter
-# considering all inputs will be user input raw data, as string
 no_param_pattern = "^(END|BEGGIN|ROLLBACK|COMMIT)$"
 one_param_pattern = "^(GET|UNSET|NUMEQUALTO) <([^<>;]*)>$"
 two_param_pattern = "^(SET) <([^<>;]*)><([^<>;]*)>$"

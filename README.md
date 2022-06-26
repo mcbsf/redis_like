@@ -50,11 +50,11 @@ It's important to ensurue this format, with upper case on function and same whit
 
  - num_equal_to(key)
 
- - beggin
+ - beggin()
 
- - commit
+ - commit()
 
- - rollback
+ - rollback()
 
 
 ## Tests considerations
@@ -69,3 +69,22 @@ Chain of calls could be done on differents Redis class functions to ensure data 
 #### Functional tests
 
 A robot could be built to test the console interface main.py, testing invalid and valid inputs to ensure the file works properly. could be used PyUserInput to simulate those events, since needs a console handler. If was web app, Selenium webdrive could be used. I have a repository with this tool to create a robot to play a game, the repository is "aow_auto_clicker", go check it out! 
+
+## Logic considerations
+### Inputs
+ - considering that wont have any '<' or '>' in paramter value, just as param delimiter
+ - considering all inputs will be user input raw data, as string
+
+### Storage type
+  for redis storage I choose dict as storage type, becouse:
+  
+  - No persistence needed
+
+  - Almost instantaneous transactions(insert/delete/update)
+
+  - Almost instantaneous access by keys
+
+### Exceptions
+
+Due to the simplicity of the implementation and lack of development time, exceptions threatment wasn't made.
+User input is already being validated with regex pattern, what will ensure it's usability via console

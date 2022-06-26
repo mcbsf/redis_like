@@ -1,8 +1,5 @@
 class Redis:
     def __init__(self):
-        # choosing dict as storage type 
-        # because it have almost instantaneous  transactions(insert/delete/update) 
-        # and almost instantaneus access by keys
         self.storage = {}
         self.rollback_actions = []
         self.in_transaction = False

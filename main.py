@@ -12,9 +12,13 @@ two_param_pattern = "^(SET) <([^<>;]*)><([^<>;]*)>$"
 valid_pattern = re.compile(f"({no_param_pattern}|{one_param_pattern}|{two_param_pattern})")
 
 def is_valid_input(input_value):
+    # Big O = N
+    # N: input_value lenght 
     return True if valid_pattern.match(input_value) else False
 
 def get_parameters(input_value):
+    # Big O = N
+    # N: input_value lenght 
     params = input_value.split("<")
     if len(params) == 2:
         return [params[1][:len(params[1])-1]]
@@ -22,6 +26,8 @@ def get_parameters(input_value):
         return [params[1][:len(params[1])-1], params[2][:len(params[2])-1]]
 
 def process_input(input_value):
+    # Big O = N
+    # N: input_value lenght 
     if "GET" in input_value:
         params = get_parameters(input_value)
         print(r.get(params[0]))

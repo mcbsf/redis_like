@@ -12,7 +12,6 @@ class Redis:
         # Big O = constant
         if self.in_transaction:
             if key in self.storage:
-                print("rolling back with key on set")
                 value = self.storage[key]
                 self.rollback_actions.append((
                     self.set,
@@ -22,8 +21,6 @@ class Redis:
                     ]
                 ))
             else:
-                
-                print("rolling back without key on set")
                 self.rollback_actions.append((
                     self.unset,
                     [key]
@@ -68,12 +65,7 @@ class Redis:
         rollback_actions = self.rollback_actions
         self.commit()
         for (function, params) in reversed(rollback_actions):
-            print("--------")
-            print(function)
-            print(params)
-            print(len(params))
             if len(params)>1:
                 function(params[0], params[1])
             else:
-                print("ONE PARAMETER ONLY")
                 function(params[0])

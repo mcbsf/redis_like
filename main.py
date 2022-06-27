@@ -3,7 +3,7 @@ import re
 
 r = Redis()
 
-no_param_pattern = "^(END|BEGGIN|ROLLBACK|COMMIT)$"
+no_param_pattern = "^(END|BEGIN|ROLLBACK|COMMIT)$"
 one_param_pattern = "^(GET|UNSET|NUMEQUALTO) <([^<>;]*)>$"
 two_param_pattern = "^(SET) <([^<>;]*)><([^<>;]*)>$"
 
@@ -44,8 +44,8 @@ def process_input(input_value):
         r.set(params[0], params[1])
         print()
     
-    elif "BEGGIN" in input_value:
-        r.beggin()
+    elif "BEGIN" in input_value:
+        r.begin()
     
     elif "COMMIT" in input_value:
         r.commit()

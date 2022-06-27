@@ -12,18 +12,21 @@ class Redis:
         # Big O = constant
         if self.in_transaction:
             if key in self.storage:
+                print("rolling back with key on set")
                 value = self.storage[key]
                 self.rollback_actions.append((
                     self.set,
-                    (
+                    [
                         key,
                         value
-                    )
+                    ]
                 ))
             else:
+                
+                print("rolling back without key on set")
                 self.rollback_actions.append((
                     self.unset,
-                    (key)
+                    [key]
                 ))
         self.storage[key] = value
         
@@ -34,10 +37,10 @@ class Redis:
                 value = self.storage[key]
                 self.rollback_actions.append((
                     self.set,
-                    (
+                    [
                         key,
                         value
-                    )
+                    ]
                 ))
         self.storage.pop(key, None)
     
@@ -50,7 +53,7 @@ class Redis:
                 count += 1
         return count
 
-    def beggin(self):
+    def begin(self):
         # Big O = constant
         self.in_transaction = True
 
@@ -65,7 +68,12 @@ class Redis:
         rollback_actions = self.rollback_actions
         self.commit()
         for (function, params) in reversed(rollback_actions):
+            print("--------")
+            print(function)
+            print(params)
+            print(len(params))
             if len(params)>1:
                 function(params[0], params[1])
             else:
+                print("ONE PARAMETER ONLY")
                 function(params[0])

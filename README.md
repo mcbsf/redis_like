@@ -23,7 +23,7 @@ As asked by the stakeholders of this repository, the commands via console are li
 
 `END`
 
-`BEGGIN`
+`BEGIN`
 
 `COMMIT`
 
@@ -50,7 +50,7 @@ It's important to ensurue this format, with upper case on function and same whit
 
  - num_equal_to(key)
 
- - beggin()
+ - begin()
 
  - commit()
 

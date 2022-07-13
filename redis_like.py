@@ -12,12 +12,12 @@ class Redis:
         # Big O = constant
         if self.in_transaction:
             if key in self.storage:
-                value = self.storage[key]
+                old_value = self.storage[key]
                 self.rollback_actions.append((
                     self.set,
                     [
                         key,
-                        value
+                        old_value
                     ]
                 ))
             else:
